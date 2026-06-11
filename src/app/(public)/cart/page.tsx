@@ -8,6 +8,7 @@ import EmptyState from "@/components/ui/EmptyState";
 import FlatButton from "@/components/ui/FlatButton";
 import OrderSummaryCard from "@/components/ui/OrderSummaryCard";
 import QuantityControl from "@/components/ui/QuantityControl";
+import { products } from "@/data/products";
 import { useCart } from "@/store/cart";
 
 export default function CartPage() {
@@ -22,6 +23,9 @@ export default function CartPage() {
 		voucherCode,
 	} = useCart();
 	const [voucherMsg, setVoucherMsg] = useState("");
+
+	const getImage = (item: (typeof items)[number]) =>
+		item.image ?? products.find((p) => p.id === item.productId)?.images[0];
 
 	if (items.length === 0) {
 		return (
@@ -57,35 +61,38 @@ export default function CartPage() {
 						>
 							{/* Thumbnail */}
 							<div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-flat bg-accent/15">
-								{item.image ? (
-									<Image
-										src={item.image}
-										alt={item.name}
-										fill
-										className="object-cover"
-										sizes="80px"
-									/>
-								) : (
-									<div className="flex h-full w-full items-center justify-center">
-										<svg
-											viewBox="0 0 40 40"
-											fill="none"
-											role="img"
-											aria-label="Product thumbnail"
-											className="h-8 w-8 opacity-25"
-										>
-											<rect
-												x="6"
-												y="10"
-												width="28"
-												height="22"
-												rx="3"
-												stroke="#1A1A1A"
-												strokeWidth="2"
-											/>
-										</svg>
-									</div>
-								)}
+								{(() => {
+									const img = getImage(item);
+									return img ? (
+										<Image
+											src={img}
+											alt={item.name}
+											fill
+											className="object-cover"
+											sizes="80px"
+										/>
+									) : (
+										<div className="flex h-full w-full items-center justify-center">
+											<svg
+												viewBox="0 0 40 40"
+												fill="none"
+												role="img"
+												aria-label="Product thumbnail"
+												className="h-8 w-8 opacity-25"
+											>
+												<rect
+													x="6"
+													y="10"
+													width="28"
+													height="22"
+													rx="3"
+													stroke="#1A1A1A"
+													strokeWidth="2"
+												/>
+											</svg>
+										</div>
+									);
+								})()}
 							</div>
 
 							{/* Info */}
