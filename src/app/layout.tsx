@@ -26,7 +26,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Naur — Specialty Tea Bar",
+	title: "NAUR",
 	description:
 		"Nyalakan Momenmu. Specialty tea bar untuk jiwa yang berani menikmati.",
 };
