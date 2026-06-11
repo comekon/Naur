@@ -1,0 +1,6 @@
+SKILL.md
+node_modules
+.next
+
+# Halaman Tentang
+src/app/(public)/about/
