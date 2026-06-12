@@ -171,7 +171,34 @@ export default function ArticleDetailPage() {
             </div>
 
             {/* Tags */}
-            <div className="mt-10 flex flex-wrap gap-2">
+            <div className="mt-10 flex flex-wrap gap-2">kekurangan naur: marquee text di landing page kurang panjang perulangannya
+
+prompt perbaikan svg:
+Perbaiki SVG peta di section "Dari kebun teh terbaik Nusantara".
+
+Tujuan:
+- SVG tetap playful, handmade, dan cocok dengan style website.
+- Bentuk harus lebih mudah dibaca sebagai representasi sederhana peta Indonesia.
+- Highlight tiga lokasi utama: Kerinci, Wonosobo, dan Puncak.
+
+Arahan desain:
+1. Gunakan background section yang sudah ada.
+2. Buat bentuk pulau-pulau lebih rapi dan proporsional, tidak terlalu seperti blob acak.
+3. Pertahankan gaya ilustratif dengan fill warna oranye, merah, dan kuning.
+4. Kurangi ketebalan stroke putih agar lebih elegan.
+5. Buat titik lokasi lebih kecil dan konsisten.
+6. Atur label agar tidak bertabrakan:
+   - Kerinci di dekat Sumatra
+   - Wonosobo di area Jawa Tengah
+   - Puncak di area Jawa Barat
+7. Jika label sempit, gunakan callout line kecil dari label ke titik.
+8. Area kuning non-highlight dibuat sedikit lebih redup agar tidak mengalahkan lokasi utama.
+9. Tambahkan hover effect pada titik lokasi:
+   - titik membesar sedikit
+   - muncul tooltip kecil berisi nama lokasi
+10. Pastikan SVG responsive di desktop dan mobile.
+
+Jangan ubah copywriting di sebelah kiri. Fokus hanya pada peningkatan SVG peta di sebelah kanan.
               {article.tags.map((tag) => (
                 <span key={tag} className="font-label text-xs border-2 border-text-dark/20 rounded-flat px-3 py-1 text-text-muted">
                   #{tag}
