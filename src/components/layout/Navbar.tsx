@@ -184,7 +184,7 @@ export default function Navbar() {
 	const [searchOpen, setSearchOpen] = useState(false);
 	const pathname = usePathname();
 	const { items: cartItems } = useCart();
-	const { user } = useAuth();
+	const { user, logout } = useAuth();
 
 	useEffect(() => {
 		setOpen(false);
@@ -324,6 +324,16 @@ export default function Navbar() {
 										Dashboard
 									</Link>
 								)}
+								<button
+									type="button"
+									onClick={() => {
+										logout();
+										setOpen(false);
+									}}
+									className="block w-full text-left font-display text-sm font-bold text-primary hover:underline"
+								>
+									Logout
+								</button>
 							</div>
 						) : (
 							<Link href="/login" className="block">

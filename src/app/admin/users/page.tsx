@@ -377,13 +377,13 @@ export default function AdminUsersPage() {
 						{/* Stats row */}
 						<div className="grid grid-cols-3 gap-3">
 							<div className="rounded-flat border-2 border-text-dark bg-primary/5 p-4 text-center">
-								<p className="font-display text-2xl font-bold">
+								<p className="font-display text-xl font-bold leading-tight sm:text-2xl">
 									{userOrders.length}
 								</p>
 								<p className="font-label text-xs text-text-muted">Order</p>
 							</div>
 							<div className="rounded-flat border-2 border-text-dark bg-secondary/5 p-4 text-center">
-								<p className="font-display text-2xl font-bold">
+								<p className="font-display text-base font-bold leading-tight break-words sm:text-2xl">
 									{fmt(totalSpent)}
 								</p>
 								<p className="font-label text-xs text-text-muted">
@@ -391,7 +391,7 @@ export default function AdminUsersPage() {
 								</p>
 							</div>
 							<div className="rounded-flat border-2 border-text-dark bg-accent/5 p-4 text-center">
-								<p className="font-display text-2xl font-bold">
+								<p className="font-display text-xl font-bold leading-tight sm:text-2xl">
 									{userOrders.filter((o) => o.status === "done").length}
 								</p>
 								<p className="font-label text-xs text-text-muted">Selesai</p>

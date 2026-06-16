@@ -74,9 +74,33 @@ function ChevronDownIcon({ className }: { className?: string }) {
 	);
 }
 
+function MenuIcon({ className }: { className?: string }) {
+	return (
+		<svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2.5"
+			strokeLinecap="round"
+			className={className}
+			aria-hidden="true"
+		>
+			<line x1="4" y1="6" x2="20" y2="6" />
+			<line x1="4" y1="12" x2="20" y2="12" />
+			<line x1="4" y1="18" x2="20" y2="18" />
+		</svg>
+	);
+}
+
 /* ── Component ── */
 
-export default function AdminHeader() {
+export default function AdminHeader({
+	onMenuClick,
+}: {
+	onMenuClick?: () => void;
+}) {
 	const { logout } = useAuth();
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const dropdownRef = useRef<HTMLDivElement>(null);
@@ -96,15 +120,25 @@ export default function AdminHeader() {
 	}, []);
 
 	return (
-		<header className="sticky top-0 z-50 flex h-[65px] items-center justify-between border-b border-[#e5e7eb] bg-white px-6">
-			{/* Left — Logo */}
-			<Link
-				href="/admin"
-				className="flex items-center gap-2 font-display text-2xl font-bold"
-			>
-				<FlameIcon className="text-primary" />
-				Naur
-			</Link>
+		<header className="sticky top-0 z-50 flex h-[65px] items-center justify-between border-b border-[#e5e7eb] bg-white px-4 sm:px-6">
+			{/* Left — Hamburger (mobile) + Logo */}
+			<div className="flex items-center gap-2">
+				<button
+					type="button"
+					onClick={onMenuClick}
+					className="p-2 text-text-dark md:hidden"
+					aria-label="Buka menu navigasi"
+				>
+					<MenuIcon />
+				</button>
+				<Link
+					href="/admin"
+					className="flex items-center gap-2 font-display text-2xl font-bold"
+				>
+					<FlameIcon className="text-primary" />
+					Naur
+				</Link>
+			</div>
 
 			{/* Right — Actions */}
 			<div className="flex items-center gap-4">

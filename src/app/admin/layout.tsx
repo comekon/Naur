@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AdminHeader from "@/components/admin/AdminHeader";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import { useAuth } from "@/store/auth";
@@ -23,6 +23,8 @@ export default function AdminLayout({
 		}
 	}, [user, router]);
 
+	const [sidebarOpen, setSidebarOpen] = useState(false);
+
 	if (user?.role !== "admin") {
 		return (
 			<div className="flex min-h-[60vh] items-center justify-center">
@@ -35,10 +37,13 @@ export default function AdminLayout({
 
 	return (
 		<div className="flex min-h-screen flex-col">
-			<AdminHeader />
+			<AdminHeader onMenuClick={() => setSidebarOpen(true)} />
 			<div className="flex flex-1">
-				<AdminSidebar />
-				<main className="flex-1 bg-light-base/50 p-6">{children}</main>
+				<AdminSidebar
+					open={sidebarOpen}
+					onClose={() => setSidebarOpen(false)}
+				/>
+				<main className="flex-1 bg-light-base/50 p-4 sm:p-6">{children}</main>
 			</div>
 		</div>
 	);
