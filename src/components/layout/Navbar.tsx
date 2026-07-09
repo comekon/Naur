@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,34 +11,6 @@ import { useAuth } from "@/store/auth";
 import { useCart } from "@/store/cart";
 
 /* ── Inline SVG Icons ── */
-
-function FlameIcon({ className }: { className?: string }) {
-	return (
-		<svg
-			width="28"
-			height="28"
-			viewBox="0 0 32 32"
-			fill="none"
-			className={className}
-		>
-			<path
-				d="M16 2C16 2 6 12 6 20a10 10 0 0020 0C26 12 16 2 16 2z"
-				stroke="currentColor"
-				strokeWidth="2.5"
-				strokeLinejoin="round"
-				fill="none"
-			/>
-			<path
-				d="M16 14c0 0-4 4-4 8a4 4 0 008 0c0-4-4-8-4-8z"
-				stroke="currentColor"
-				strokeWidth="2"
-				strokeLinejoin="round"
-				fill="currentColor"
-				opacity="0.25"
-			/>
-		</svg>
-	);
-}
 
 function SearchIcon({ className }: { className?: string }) {
 	return (
@@ -174,7 +147,7 @@ const navLinks = [
 	{ href: "/menu", label: "Menu Teh" },
 	{ href: "/products", label: "Produk" },
 	{ href: "/articles", label: "Artikel" },
-	{ href: "/about", label: "Tentang" },
+	{ href: "https://naur.figma.site/page/about", label: "Tentang" },
 ];
 
 /* ── Component ── */
@@ -198,7 +171,14 @@ export default function Navbar() {
 					href="/"
 					className="flex items-center gap-2 font-display text-2xl font-bold"
 				>
-					<FlameIcon className="text-primary" />
+					<Image
+						src="/images/Naur-logo.svg"
+						alt="Naur"
+						width={24}
+						height={29}
+						priority
+						className="h-7 w-auto"
+					/>
 					Naur
 				</Link>
 

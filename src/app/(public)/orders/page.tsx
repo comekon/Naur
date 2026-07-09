@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -8,6 +9,7 @@ import EmptyState from "@/components/ui/EmptyState";
 import FlatButton from "@/components/ui/FlatButton";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { getOrdersByUserId } from "@/data/orders";
+import { getProductImage } from "@/data/products";
 import { cn } from "@/lib/cn";
 import { useAuth } from "@/store/auth";
 import type { OrderStatus } from "@/types/order";
@@ -186,36 +188,49 @@ export default function OrdersPage() {
 								{/* Products preview */}
 								<div className="border-t-2 border-text-dark/10 px-5 py-3">
 									<div className="flex flex-wrap items-center gap-2">
-										{order.items.slice(0, 3).map((item) => (
-											<span
-												key={item.productId}
-												className="flex items-center gap-2 rounded-flat border-2 border-text-dark/20 bg-light-base px-3 py-1.5 text-xs"
-											>
-												<span className="flex h-6 w-6 items-center justify-center rounded-flat bg-accent/20">
-													<svg
-														viewBox="0 0 16 16"
-														fill="none"
-														className="h-3 w-3 opacity-30"
-														aria-hidden="true"
-													>
-														<title>Produk</title>
-														<rect
-															x="2"
-															y="4"
-															width="12"
-															height="9"
-															rx="1.5"
-															stroke="#1A1A1A"
-															strokeWidth="1.5"
-														/>
-													</svg>
+										{order.items.slice(0, 3).map((item) => {
+											const img = getProductImage(item.productId);
+											return (
+												<span
+													key={item.productId}
+													className="flex items-center gap-2 rounded-flat border-2 border-text-dark/20 bg-light-base px-3 py-1.5 text-xs"
+												>
+													<span className="relative flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-flat bg-accent/20">
+														{img ? (
+															<Image
+																src={img}
+																alt={item.name}
+																fill
+																sizes="32px"
+																className="object-cover"
+															/>
+														) : (
+															<svg
+																viewBox="0 0 16 16"
+																fill="none"
+																className="h-3 w-3 opacity-30"
+																aria-hidden="true"
+															>
+																<title>Produk</title>
+																<rect
+																	x="2"
+																	y="4"
+																	width="12"
+																	height="9"
+																	rx="1.5"
+																	stroke="#1A1A1A"
+																	strokeWidth="1.5"
+																/>
+															</svg>
+														)}
+													</span>
+													<span className="font-bold">{item.name}</span>
+													<span className="text-text-muted">
+														x{item.quantity}
+													</span>
 												</span>
-												<span className="font-bold">{item.name}</span>
-												<span className="text-text-muted">
-													x{item.quantity}
-												</span>
-											</span>
-										))}
+											);
+										})}
 										{order.items.length > 3 && (
 											<span className="rounded-flat bg-text-dark/5 px-3 py-1.5 font-label text-xs font-bold text-text-muted">
 												+{order.items.length - 3} lagi
